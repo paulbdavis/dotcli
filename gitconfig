@@ -1,0 +1,16 @@
+[user]
+    name = paulbdavis
+    email = paul@dangersalad.com
+[core]
+    editor = vi
+    autocrlf = input
+[color]
+    ui = auto
+[alias]
+    ls = log --decorate --oneline --graph
+    ll = log --decorate --graph --dirstat
+    la = log --decorate --oneline --graph --all
+    lla = log --decorate --graph --all --dirstat
+    co = checkout
+[push]
+    default = current
