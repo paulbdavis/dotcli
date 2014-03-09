@@ -22,22 +22,13 @@ then
     for plugin in $plugins
     do
         gitURL="https://github.com/${plugin}.git"
-        gitDest="$HOME/.zsh/${plugin#*/}"
+        gitDest="$HOME/.zsh/plugins/${plugin#*/}"
         if [[ ! -d "$gitDest" ]]
         then
-            if [[ -d $HOME/.git ]]
-            then
-                echo "adding submodule"
-                git submodule add $gitURL $gitDest
-            else
-                echo "cloning repo"
-                git clone $gitURL $gitDest
-            fi
+            echo "cloning repo"
+            git clone $gitURL $gitDest
         fi
     done
-    # special considerations for individual plugins go here
-    chmod 755 $HOME/.zsh/zsh-completions/
-    chmod 755 $HOME/.zsh/zsh-completions/src
 fi
 
 
@@ -59,7 +50,7 @@ setopt extendedglob
 fpath=($HOME/.zsh/completions $fpath)
 # more completions
 # from https://github.com/zsh-users/zsh-completions
-fpath=($HOME/.zsh/zsh-completions/src $fpath)
+fpath=($HOME/.zsh/plugins/zsh-completions/src $fpath)
 compinit
 
 #########
@@ -290,7 +281,7 @@ zle -N zle-keymap-select
 
 # syntax highlighing on prompt
 # from https://github.com/zsh-users/zsh-syntax-highlighting
-source $HOME/.zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+source $HOME/.zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
 #########################
 # vi detector functions #
