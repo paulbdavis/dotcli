@@ -4,6 +4,22 @@
 
 [ ! "$LANG" = en_US.UTF8 ] && export LANG=en_US.UTF8
 
+if [[ -f $HOME/.gpg-agent-info ]]
+then
+    . $HOME/.gpg-agent-info
+    export GPG_AGENT_INFO
+    export GPG_TTY=$(tty)
+fi
+
+############
+# terminal #
+############
+
+# only set xterm-256color when we are sure we are using a color terminal
+if [[ "$COLORTERM" == "gnome-terminal" ]] || [[ "$COLORTERM" == "xfce4-terminal" ]]
+then
+    export TERM=xterm-256color
+fi
 
 ################
 # plugin setup #
