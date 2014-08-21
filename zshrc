@@ -194,8 +194,6 @@ fi
 
 alias tree='tree -ChF'
 
-# pipe to xclip and allow pasting
-alias xclip='xclip -selection c'
 #color for grep
 alias grep='grep --color'
 
@@ -231,6 +229,7 @@ alias gp='git push'
 alias gf='git fetch'
 alias gls='git ls-files'
 compdef g=git
+alias gprojects='dirname */.git'
 # compctl -K _git g
 
 if [[ $FBTERM -eq 1 ]]
@@ -387,3 +386,13 @@ preexec() {
     # echo -ne "\033]12;grey\007"
     # echo -ne "\033[2 q"
 }
+
+################
+# local config #
+################
+
+LOCALFILE="$HOME/.zshrc.local" 
+if [[ -f "$LOCALFILE" ]]
+then
+    source "$LOCALFILE"
+fi
