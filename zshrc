@@ -9,6 +9,8 @@ then
     . $HOME/.gpg-agent-info
     export GPG_AGENT_INFO
     export GPG_TTY=$(tty)
+    export SSH_AUTH_SOCK
+    export SSH_AGENT_PID
 fi
 
 ############
