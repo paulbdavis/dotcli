@@ -13,6 +13,8 @@ then
     export SSH_AGENT_PID
 fi
 
+export SSH_AUTH_SOCK=$XDG_RUNTIME_DIR/ssh_auth_sock
+
 ############
 # terminal #
 ############
@@ -257,7 +259,7 @@ zle-keymap-select() {
         # echo -ne "\033]12;lightblue\007"
         # echo -ne "\033[6 q"
     fi
-    if [[ -z $BUFFER && $KEYMAP == vicmd ]] 
+    if [[ -z $BUFFER && $KEYMAP == vicmd ]]
     then
         BUFFER=" "
         BUFFER=""
@@ -393,7 +395,7 @@ preexec() {
 # local config #
 ################
 
-LOCALFILE="$HOME/.zshrc.local" 
+LOCALFILE="$HOME/.zshrc.local"
 if [[ -f "$LOCALFILE" ]]
 then
     source "$LOCALFILE"
