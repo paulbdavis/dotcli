@@ -1,8 +1,3 @@
-export IRCNICK="dangersalad"
-export IRCNAME="dangersalad"
-export IRCUSER="dangersalad"
-export IRCSERVER="irc.freenode.net"
-
 export PWSAFE_DATABASE=$HOME/.pwsafe/db.psafe3
 export RANDFILE=$HOME/.pwsafe/rnd
 
@@ -18,12 +13,14 @@ elif [ -f /usr/bin/virtualenvwrapper.sh ]; then
 fi
 
 export GOPATH=${HOME}/dev/go
+export GOBIN=$GOPATH/bin
+export GOARCH=amd64
+export GOOS=linux
 
-if [ "${PATH%%:*}" != "$GOPATH/bin" ]
+if [ "${PATH%%:*}" != "$GOBIN" ]
 then
-    if [ -d "$GOPATH/bin" ]
+    if [ -d "$GOBIN" ]
     then
-        export PATH="$GOPATH/bin:$PATH"
+        export PATH="$GOBIN:$PATH"
     fi
 fi
-
