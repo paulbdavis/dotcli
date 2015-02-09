@@ -370,27 +370,27 @@ set-title () {
 precmd () {
     print -Pn "\e]0;$termTitle\a"
     if [[ -z $(git ls-files --other --exclude-standard 2> /dev/null) ]] {
-        branchformat='%F{blue}%b%c%u%f'
-      } else {
-        branchformat="%F{blue}%b%c%u %F{red}U%f"
-      }
-      branchformat="%F{yellow}%s %f${branchformat} %F{red}%7.7i%f"
+           branchformat='%F{blue}%b%c%u%f'
+       } else {
+           branchformat="%F{blue}%b%c%u %F{red}U%f"
+       }
+       branchformat="%F{yellow}%s %f${branchformat} %F{red}%7.7i%f"
 
-    zstyle ':vcs_info:*' formats " [${branchformat}]"
+       zstyle ':vcs_info:*' formats " [${branchformat}]"
 
-    promptSplit='
+       promptSplit='
 '
-    if [[ $COLUMNS -lt 150 ]] promptSplit="
+       if [[ $COLUMNS -lt 150 ]] promptSplit="
 "
-    if [[ $COLUMNS -le 78 ]]
-    then
-        RPS1='$(_vimode)'
-        PS1='%(!.%F{red}.%F{yellow})%n@%2m %F{blue}%3~%f${vcs_info_msg_0_} %f%W %T %F{magenta}%h%f${promptSplit}${runningSSH}$(_vimode_color)%B%#%b%f '
-    else
-        PS1='%(!.%F{red}.%F{yellow})%n@%2m %F{blue}%3~%f${vcs_info_msg_0_} %f%W %T %f%y %(?.%F{green}✓.%F{red}✗)%F{magenta} %h%f${promptSplit}${runningSSH}$(_vimode_color)%B%#%b%f '
-        RPS1='$(_vimode)'
-    fi
-    vcs_info
+          if [[ $COLUMNS -le 78 ]]
+          then
+              RPS1='$(_vimode)'
+              PS1='%(!.%F{red}.%F{yellow})%n@%2m %F{blue}%3~%f${vcs_info_msg_0_} %f%W %T %F{magenta}%h%f${promptSplit}${runningSSH}$(_vimode_color)%B%#%b%f '
+          else
+              PS1='%(!.%F{red}.%F{yellow})%n@%2m %F{blue}%3~%f${vcs_info_msg_0_} %f%W %T %f%y %(?.%F{green}✓.%F{red}✗)%F{magenta} %h%f${promptSplit}${runningSSH}$(_vimode_color)%B%#%b%f '
+              RPS1='$(_vimode)'
+          fi
+          vcs_info
 
 }
 
