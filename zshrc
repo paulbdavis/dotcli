@@ -81,6 +81,11 @@ fpath=($HOME/.zsh/completions $fpath)
 fpath=($HOME/.zsh/plugins/zsh-completions/src $fpath)
 compinit
 
+if [[ -n "$(which npm)" ]]
+then
+    source <(npm completion)
+fi
+
 #########
 # marks #
 #########
@@ -310,6 +315,20 @@ zle -N zle-keymap-select
 # from https://github.com/zsh-users/zsh-syntax-highlighting
 source $HOME/.zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
+##################
+# misc functions #
+##################
+
+function getusername {
+NAMELIST="$(curl -s 'http://jimpix.co.uk/words/random-username-generator.asp#username-results' -X POST --data 'go=yes&ul1=1&ul2=4&al=0' | grep 'href="check' | sed 's/.*u=\([^"]*\).*/\1/')";
+if [[ "$1" == "-l" ]]
+then
+    echo "$NAMELIST"
+else
+    echo "$NAMELIST" | head -1 | xclip
+fi
+}
+
 #########################
 # vi detector functions #
 #########################
@@ -391,7 +410,6 @@ precmd () {
               RPS1='$(_vimode)'
           fi
           vcs_info
-
 }
 
 preexec() {
