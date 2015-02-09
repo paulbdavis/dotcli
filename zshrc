@@ -15,6 +15,14 @@ fi
 
 export SSH_AUTH_SOCK=$XDG_RUNTIME_DIR/ssh_auth_sock
 
+if [[ -d $HOME/.env.d ]]
+then
+    for envfile in $HOME/.env.d/*
+    do
+        . "$envfile"
+    done
+fi
+
 ############
 # terminal #
 ############
