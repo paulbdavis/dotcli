@@ -221,6 +221,9 @@ alias chromium='chromium --audio-buffer-size=2048'
 alias testnet='bitcoind -datadir='$HOME'/.bitcoin-testnet'
 compdef testnet=bitcoind
 # compctl -K _bitcoind testnet
+alias bitcoin=bitcoin-cli
+compdef bitcoin=bitcoind
+# compctl -K _bitcoind testnet
 
 # password gen
 alias password-gen="echo 'running apg' && echo && apg"
