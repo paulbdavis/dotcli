@@ -129,16 +129,20 @@ compctl -K _dockr dockr
 ##################
 # vi keybindings #
 ##################
-bindkey -v
+# bindkey -v
 # jk for vim escape
-bindkey -M viins 'jk' vi-cmd-mode
+# bindkey -M viins 'jk' vi-cmd-mode
 # :wq for ecexute
-bindkey -M vicmd -r ':'
-bindkey -M vicmd ':wq' accept-line
-bindkey -M vicmd ':w' accept-line
+# bindkey -M vicmd -r ':'
+# bindkey -M vicmd ':wq' accept-line
+# bindkey -M vicmd ':w' accept-line
 # allow deletion over newlines and past insert point
-bindkey "^?" backward-delete-char
-bindkey "^H" backward-delete-char
+# bindkey "^?" backward-delete-char
+# bindkey "^H" backward-delete-char
+
+WORDCHARS='*?_-.[]~&;!#$%^(){}<>'
+
+bindkey -e
 
 ###########
 # history #
