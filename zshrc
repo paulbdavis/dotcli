@@ -222,7 +222,7 @@ alias google-chrome='google-chrome --audio-buffer-size=2048'
 alias chromium='chromium --audio-buffer-size=2048'
 
 alias bitcoin=bitcoin-cli
-compdef bitcoin=bitcoind-cli
+compdef bitcoin=bitcoin-cli
 
 # password gen
 alias password-gen="echo 'running apg' && echo && apg"
