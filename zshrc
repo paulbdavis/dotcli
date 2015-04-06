@@ -221,13 +221,8 @@ alias grep='grep --color'
 alias google-chrome='google-chrome --audio-buffer-size=2048'
 alias chromium='chromium --audio-buffer-size=2048'
 
-# alias for bitcoind testnet
-alias testnet='bitcoind -datadir='$HOME'/.bitcoin-testnet'
-compdef testnet=bitcoind
-# compctl -K _bitcoind testnet
 alias bitcoin=bitcoin-cli
-compdef bitcoin=bitcoind
-# compctl -K _bitcoind testnet
+compdef bitcoin=bitcoind-cli
 
 # password gen
 alias password-gen="echo 'running apg' && echo && apg"
