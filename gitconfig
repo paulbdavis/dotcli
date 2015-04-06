@@ -14,3 +14,6 @@
     co = checkout
 [push]
     default = current
+
+[url "git@pidev.sol.lan:"]
+    insteadOf = https://pidev.sol.lan/
