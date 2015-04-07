@@ -294,20 +294,6 @@ _pd-gitStatus() {
     fi
     zle -M $gitStatus
 }
-zle -N _pd-fortune
-bindkey "^F" _pd-fortune
-zle -N _pd-gitStatus
-bindkey "^G" _pd-gitStatus
-
-_ed_er() {
-    vi ~/.vimrc
-}
-
-_src_rc() {
-    source ~/vimrc
-}
-bindkey "^E" _ed_rc
-bindkey "^W" _src_rc
 
 zle -N zle-line-init
 zle -N zle-keymap-select
