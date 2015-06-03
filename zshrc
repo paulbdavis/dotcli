@@ -81,7 +81,7 @@ fpath=($HOME/.zsh/completions $fpath)
 fpath=($HOME/.zsh/plugins/zsh-completions/src $fpath)
 compinit
 
-if [[ -n "$(which npm)" ]]
+if which npm >/dev/null 2>&1
 then
     source <(npm completion)
 fi
