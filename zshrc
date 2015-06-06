@@ -250,10 +250,24 @@ compdef g=git
 alias gprojects='dirname */.git'
 # compctl -K _git g
 
+
+# xclip
+copy() {
+    read text
+    echo $text | xclip -selection primary
+    echo $text | xclip -selection secondary
+    echo $text | xclip -selection clipboard
+}
+
+
+
+
 if [[ $FBTERM -eq 1 ]]
 then
     export TERM=fbterm
 fi
+
+
 #######
 # zle #
 #######
