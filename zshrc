@@ -198,6 +198,7 @@ export LESSOPEN="| /usr/bin/source-highlight-esc.sh %s"
 # aliases #
 ###########
 
+alias zs='source $HOME/.zshrc'
 
 PLATFORM=$(uname -s)
 # ls and tree
@@ -374,10 +375,10 @@ autoload -U colors && colors
 setopt prompt_subst
 
 
-runningSSH=" "
+runningSSH="%f "
 if [ "$SSH_CONNECTION" ]
 then
-    runningSSH="%F{red}ssh %f"
+    runningSSH="%F{red}ssh %f "
 fi
 
 ####################
@@ -396,14 +397,16 @@ precmd () {
        } else {
            branchformat="%F{blue}%b%c%u %F{red}U%f"
        }
-       branchformat="%F{yellow}%s %f${branchformat} %F{red}%7.7i%f"
+       branchformat="%{$fg_no_bold[yellow]%}%s %f${branchformat} %F{red}%7.7i%f"
 
-       zstyle ':vcs_info:*' formats " [${branchformat}]"
+       zstyle ':vcs_info:*' formats "
+[ ${branchformat}%{$fg_bold[white]%} ]"
 
-       promptSplit='
-'
-       RPS1='$(_vimode)'
-       PS1='%(!.%F{red}.%F{yellow})%n@%2m %F{blue}%3~%f${vcs_info_msg_0_} %f%W %T %F{magenta}%h%f${promptSplit}${runningSSH}$(_vimode_color)%B%#%b%f '
+       promptSplit="
+"
+       PS1='
+
+%(!.%F{red}.%{$fg_no_bold[yellow]%})%n%{$fg_no_bold[green]%}@%{$fg_no_bold[cyan]%}%2m %{$fg_bold[white]%}-[ %{$fg_no_bold[blue]%}%3~%{$fg_bold[white]%} ]-${vcs_info_msg_0_}${promptSplit}%{$fg_no_bold[white]%}%W %T %F{magenta}%h%f %(?.%F{green}✓.%F{red}✗)${promptSplit}${runningSSH}$(_vimode_color)%B%#%b%f '
        vcs_info
 }
 
