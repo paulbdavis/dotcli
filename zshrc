@@ -307,13 +307,15 @@ source $HOME/.zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 ##################
 
 function getusername {
-NAMELIST="$(curl -s 'http://jimpix.co.uk/words/random-username-generator.asp#username-results' -X POST --data 'go=yes&ul1=1&ul2=4&al=0' | grep 'href="check' | sed 's/.*u=\([^"]*\).*/\1/')";
-if [[ "$1" == "-l" ]]
-then
-    echo "$NAMELIST"
-else
-    echo "$NAMELIST" | head -1 | xclip
-fi
+    curlData="$(curl -s 'http://jimpix.co.uk/words/random-username-generator.asp#username-results' -X POST --data 'go=yes&ul1=1&ul2=4&al=0')"
+    nodes="$(echo $curlData | grep 'href=.check\.asp')"
+    nameslist="$(echo $nodes | sed 's/.*u=\([a-zA-Z0-9]*\).*/\1/')"
+    if [[ "$1" == "-l" ]]
+    then
+        echo "$namelist"
+    else
+        echo "$namelist" | head -1 | xclip
+    fi
 }
 
 #########################
