@@ -328,7 +328,7 @@ function getusername {
     then
         echo "$namelist"
     else
-        echo "$namelist" | head -1 | xclip
+        echo "$namelist" | head -1 | copy
     fi
 }
 
