@@ -4,16 +4,7 @@
 
 [ ! "$LANG" = en_US.UTF8 ] && export LANG=en_US.UTF8
 
-if [[ -f $HOME/.gpg-agent-info ]]
-then
-    . $HOME/.gpg-agent-info
-    export GPG_AGENT_INFO
-    export GPG_TTY=$(tty)
-    export SSH_AUTH_SOCK
-    export SSH_AGENT_PID
-fi
-
-export SSH_AUTH_SOCK=$XDG_RUNTIME_DIR/ssh_auth_sock
+export SSH_AUTH_SOCK=$HOME/.gnupg/S.gpg-agent.ssh
 
 if [[ -d $HOME/.env.d ]]
 then
