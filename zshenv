@@ -21,12 +21,3 @@ export GOOS=linux
 # android
 export ANDROID_HOME=/opt/android-sdk
 export ANDROID_SWT=/usr/share/java
-export PATH=$PATH:$ANDROID_HOME/tools
-
-if [[ "${PATH%%:*}" != "$GOBIN" ]]
-then
-    if [[ -d "$GOBIN" ]]
-    then
-        export PATH="$GOBIN:$PATH"
-    fi
-fi
