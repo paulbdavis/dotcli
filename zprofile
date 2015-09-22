@@ -1,12 +1,19 @@
-
+paths=(
+    "$HOME/bin"
+    "$ANDROID_HOME/tools"
+    "$GOBIN"
+)
 # set PATH so it includes user's private bin if it exists
-if [ "${PATH%%:*}" != "$HOME/bin" ]
-then
-    if [ -d "$HOME/bin" ]
+for dir in $paths
+do
+    if [ "${PATH/$dir//}" = "$PATH" ]
     then
-        PATH="$HOME/bin:$PATH"
+        if [ -d "$dir" ]
+        then
+            export PATH="$dir:$PATH"
+        fi
     fi
-fi
+done
 
 if [[ -r $HOME/.java_setup ]]
 then
