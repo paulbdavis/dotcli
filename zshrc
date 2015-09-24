@@ -4,8 +4,6 @@
 
 [ ! "$LANG" = en_US.UTF8 ] && export LANG=en_US.UTF8
 
-export SSH_AUTH_SOCK=$HOME/.gnupg/S.gpg-agent.ssh
-
 if [[ -d $HOME/.env.d ]]
 then
     for envfile in $HOME/.env.d/*
