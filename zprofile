@@ -1,5 +1,6 @@
 paths=(
     "$HOME/bin"
+    "$HOME/.config/i3/bin"
     "$ANDROID_HOME/tools"
     "$GOBIN"
 )
