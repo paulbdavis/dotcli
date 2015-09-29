@@ -256,7 +256,7 @@ alias gprojects='dirname */.git'
 
 # xclip
 copy() {
-    read text
+    text=$(cat)
     echo $text | xclip -selection primary
     echo $text | xclip -selection secondary
     echo $text | xclip -selection clipboard
