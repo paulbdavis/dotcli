@@ -2,6 +2,15 @@
 # environment #
 ###############
 
+if [[ "$TERM" == "dumb" ]]
+then
+  unsetopt zle
+  unsetopt prompt_cr
+  unsetopt prompt_subst
+  PS1='$ '
+  return
+fi
+
 [ ! "$LANG" = en_US.UTF8 ] && export LANG=en_US.UTF8
 
 if [[ -d $HOME/.env.d ]]
