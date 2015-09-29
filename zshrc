@@ -220,9 +220,12 @@ alias grep='grep --color'
 alias google-chrome='google-chrome --audio-buffer-size=2048'
 alias chromium='chromium --audio-buffer-size=2048'
 
-alias bitcoin=bitcoin-cli
+if which bitcoin-cli >/dev/null 2>&1
+then
+    alias bitcoin=bitcoin-cli
+    compdef bitcoin=bitcoin-cli
+fi
 
-compdef bitcoin=bitcoin-cli
 # password gen
 alias password-gen="echo 'running apg' && echo && apg"
 
