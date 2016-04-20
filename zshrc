@@ -35,7 +35,10 @@ fi
 # plugin setup #
 ################
 
-plugins=(zsh-users/zsh-completions zsh-users/zsh-syntax-highlighting)
+plugins=(zsh-users/zsh-completions \
+             zsh-users/zsh-syntax-highlighting \
+             zsh-users/zsh-autosuggestions \
+             zsh-users/zsh-history-substring-search)
 
 # only do this if git is installed
 if [[ -n "$(which git)" ]]
@@ -57,6 +60,9 @@ then
     done
 fi
 
+# syntax highlighing on prompt
+# from https://github.com/zsh-users/zsh-syntax-highlighting
+source $HOME/.zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
 
 ##############
@@ -154,8 +160,34 @@ setopt shareHistory
 setopt histIgnoreAllDups
 bindkey "^R" history-incremental-search-backward
 bindkey -M vicmd "^R" history-incremental-search-backward
-bindkey "^[[A" history-search-backward
-bindkey "^[[B" history-search-forward
+
+
+# fish like history search, must load AFTER syntax highlighting
+source $HOME/.zsh/plugins/zsh-history-substring-search/zsh-history-substring-search.zsh
+
+# OPTION 1: for most systems
+zmodload zsh/terminfo
+bindkey "$terminfo[kcuu1]" history-substring-search-up
+bindkey "$terminfo[kcud1]" history-substring-search-down
+
+# OPTION 2: for iTerm2 running on Apple MacBook laptops
+zmodload zsh/terminfo
+bindkey "$terminfo[cuu1]" history-substring-search-up
+bindkey "$terminfo[cud1]" history-substring-search-down
+
+# OPTION 3: for Ubuntu 12.04, Fedora 21, and MacOSX 10.9
+bindkey '^[[A' history-substring-search-up
+bindkey '^[[B' history-substring-search-down
+
+## EMACS mode ###########################################
+
+bindkey -M emacs '^P' history-substring-search-up
+bindkey -M emacs '^N' history-substring-search-down
+
+## VI mode ##############################################
+
+bindkey -M vicmd 'k' history-substring-search-up
+bindkey -M vicmd 'j' history-substring-search-down
 
 
 ###############
@@ -315,9 +347,11 @@ _pd-gitStatus() {
 zle -N zle-line-init
 zle -N zle-keymap-select
 
-# syntax highlighing on prompt
-# from https://github.com/zsh-users/zsh-syntax-highlighting
-source $HOME/.zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+
+
+# fish like suggestions
+source $HOME/.zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
+export ZSH_AUTOSUGGEST_STRATEGY=match_prev_cmd
 
 ##################
 # misc functions #
