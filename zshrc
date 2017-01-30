@@ -246,6 +246,8 @@ fi
 
 alias tree='tree -ChF'
 
+alias extip='dig +short myip.opendns.com @resolver1.opendns.com'
+
 #color for grep
 alias grep='grep --color'
 
