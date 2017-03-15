@@ -31,14 +31,45 @@ then
     export TERM=xterm-256color
 fi
 
+# if on linux tty, set up nicer colors
+if [[ "$TERM" == "linux" ]]
+then
+    # black
+    echo -en "\e]P0000000"
+    # dark grey
+    echo -en "\e]P83f3f3f"
+    # red
+    echo -en "\e]P1bc8383"
+    echo -en "\e]P9cc9393"
+    # green
+    echo -en "\e]P25f7f5f"
+    echo -en "\e]P107f9f7f"
+    # yellow
+    echo -en "\e]P3e0cf9f"
+    echo -en "\e]P11f0dfaf"
+    # blue
+    echo -en "\e]P47cb8bb"
+    echo -en "\e]P128cd0d3"
+    # magenta
+    echo -en "\e]P5bca3a3"
+    echo -en "\e]P3#c0bed1"
+    # cyan
+    echo -en "\e]P6dfaf8f"
+    echo -en "\e]P14dfaf8f"
+    # light grey
+    echo -en "\e]P7dcdccc"
+    # white
+    echo -en "\e]P15ffffff"
+fi
+
 ################
 # plugin setup #
 ################
 
 plugins=(zsh-users/zsh-completions \
-             zsh-users/zsh-syntax-highlighting \
-             zsh-users/zsh-autosuggestions \
-             zsh-users/zsh-history-substring-search)
+    zsh-users/zsh-syntax-highlighting \
+    zsh-users/zsh-autosuggestions \
+    zsh-users/zsh-history-substring-search)
 
 # only do this if git is installed
 if [[ -n "$(which git)" ]]
@@ -312,38 +343,38 @@ fi
 zle_highlight=(suffix:fg=red)
 
 zle-line-init() {
-    # zle -K viins
-    # echo -ne "\033]12;lightblue\007"
-    # echo -ne "\033[6 q"
+# zle -K viins
+# echo -ne "\033]12;lightblue\007"
+# echo -ne "\033[6 q"
 }
 zle-keymap-select() {
-    if [ $KEYMAP = vicmd ]; then
-        # echo -ne "\033]12;grey\007"
-        # echo -ne "\033[2 q"
-    else
-        # echo -ne "\033]12;lightblue\007"
-        # echo -ne "\033[6 q"
-    fi
-    if [[ -z $BUFFER && $KEYMAP == vicmd ]]
-    then
-        BUFFER=" "
-        BUFFER=""
-    fi
-    zle reset-prompt
+if [ $KEYMAP = vicmd ]; then
+    # echo -ne "\033]12;grey\007"
+    # echo -ne "\033[2 q"
+else
+    # echo -ne "\033]12;lightblue\007"
+    # echo -ne "\033[6 q"
+fi
+if [[ -z $BUFFER && $KEYMAP == vicmd ]]
+then
+    BUFFER=" "
+    BUFFER=""
+fi
+zle reset-prompt
 }
 
 _pd-fortune() {
-    zle -M "$(fortune -a | sed 's/\t/  /g')"
+zle -M "$(fortune -a | sed 's/\t/  /g')"
 }
 
 _pd-gitStatus() {
 
-    gitStatus="$(git status 2>/dev/null | sed 's/\t/  /g')"
-    if [ -z $gitStatus ]
-    then
-        gitStatus="Not a git repo"
-    fi
-    zle -M $gitStatus
+gitStatus="$(git status 2>/dev/null | sed 's/\t/  /g')"
+if [ -z $gitStatus ]
+then
+    gitStatus="Not a git repo"
+fi
+zle -M $gitStatus
 }
 
 zle -N zle-line-init
@@ -425,27 +456,27 @@ fi
 termTitle='%n@%m: %~'
 
 set-title () {
-    termTitle=$1
+termTitle=$1
 }
 
 precmd () {
     print -Pn "\e]0;$termTitle\a"
     if [[ -z $(git ls-files --other --exclude-standard 2> /dev/null) ]] {
-           branchformat='%F{blue}%b%c%u%f'
-       } else {
-           branchformat="%F{blue}%b%c%u %F{red}U%f"
-       }
-       branchformat="%{$fg_no_bold[yellow]%}%s %f${branchformat} %F{red}%7.7i%f"
+        branchformat='%F{blue}%b%c%u%f'
+    } else {
+    branchformat="%F{blue}%b%c%u %F{red}U%f"
+}
+branchformat="%{$fg_no_bold[yellow]%}%s %f${branchformat} %F{red}%7.7i%f"
 
-       zstyle ':vcs_info:*' formats "
+zstyle ':vcs_info:*' formats "
 [ ${branchformat}%{$fg_bold[white]%} ]"
 
-       promptSplit="
+promptSplit="
 "
-       PS1='
+PS1='
 
 %(!.%F{red}.%{$fg_no_bold[yellow]%})%n%{$fg_no_bold[green]%}@%{$fg_no_bold[cyan]%}%2m %{$fg_bold[white]%}-[ %{$fg_no_bold[blue]%}%3~%{$fg_bold[white]%} ]-${vcs_info_msg_0_}${promptSplit}%{$fg_no_bold[white]%}%W %T %F{magenta}%h%f %(?.%F{green}✓.%F{red}✗)${promptSplit}${runningSSH}$(_vimode_color)%B%#%b%f '
-       vcs_info
+vcs_info
 }
 
 preexec() {
