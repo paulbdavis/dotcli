@@ -35,7 +35,7 @@ fi
 if [[ "$TERM" == "linux" ]]
 then
     # black
-    echo -en "\e]P0000000"
+    echo -en "\e]P0131313"
     # dark grey
     echo -en "\e]P83f3f3f"
     # red
@@ -90,10 +90,6 @@ then
         fi
     done
 fi
-
-# syntax highlighing on prompt
-# from https://github.com/zsh-users/zsh-syntax-highlighting
-source $HOME/.zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
 
 ##############
@@ -505,3 +501,11 @@ fi
 
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # This loads nvm
+
+####################
+# syntax highlight #
+####################
+
+# syntax highlighing on prompt
+# from https://github.com/zsh-users/zsh-syntax-highlighting
+source $HOME/.zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
