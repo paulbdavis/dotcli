@@ -114,6 +114,11 @@ fpath=($HOME/.zsh/completions $fpath)
 # more completions
 # from https://github.com/zsh-users/zsh-completions
 fpath=($HOME/.zsh/plugins/zsh-completions/src $fpath)
+
+if [[ -f "$HOME/.rustup/toolchains/nightly-x86_64-unknown-linux-gnu/share/zsh/site-functions/_cargo" ]]
+then
+    fpath=("$HOME/.rustup/toolchains/nightly-x86_64-unknown-linux-gnu/share/zsh/site-functions" $fpath)
+fi
 compinit
 
 if which npm >/dev/null 2>&1

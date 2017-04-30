@@ -4,6 +4,7 @@ paths=(
     "$ANDROID_HOME/tools"
     "$GOBIN"
     "$HOME/.cabal/bin"
+    "$HOME/.cargo/bin"
 )
 # set PATH so it includes user's private bin if it exists
 for dir in $paths
