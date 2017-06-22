@@ -22,3 +22,11 @@ if [[ -r $HOME/.java_setup ]]
 then
     . $HOME/.java_setup
 fi
+
+if which rustc >/dev/null 2>&1
+then
+    rust_root="$(rustc --print sysroot)"
+    export PATH="$rust_root/bin:$PATH"
+    export RUST_SRC_PATH="$rust_root/lib/rustlib/src/rust/src"
+fi
+    
