@@ -501,6 +501,7 @@ fi
 
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
 ####################
 # syntax highlight #
@@ -509,3 +510,4 @@ export NVM_DIR="$HOME/.nvm"
 # syntax highlighing on prompt
 # from https://github.com/zsh-users/zsh-syntax-highlighting
 source $HOME/.zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+
