@@ -67,9 +67,9 @@ fi
 ################
 
 plugins=(zsh-users/zsh-completions \
-    zsh-users/zsh-syntax-highlighting \
-    zsh-users/zsh-autosuggestions \
-    zsh-users/zsh-history-substring-search)
+             zsh-users/zsh-syntax-highlighting \
+             zsh-users/zsh-autosuggestions \
+             zsh-users/zsh-history-substring-search)
 
 # only do this if git is installed
 if [[ -n "$(which git)" ]]
@@ -179,47 +179,6 @@ compctl -K _dockr dockr
 WORDCHARS='*?_-.[]~&;!#$%^(){}<>'
 
 bindkey -e
-
-###########
-# history #
-###########
-
-HISTFILE=~/.zhistory
-HISTSIZE=1000
-SAVEHIST=1000
-setopt appendHistory
-setopt shareHistory
-setopt histIgnoreAllDups
-bindkey "^R" history-incremental-search-backward
-bindkey -M vicmd "^R" history-incremental-search-backward
-
-
-# fish like history search, must load AFTER syntax highlighting
-source $HOME/.zsh/plugins/zsh-history-substring-search/zsh-history-substring-search.zsh
-
-# OPTION 1: for most systems
-zmodload zsh/terminfo
-bindkey "$terminfo[kcuu1]" history-substring-search-up
-bindkey "$terminfo[kcud1]" history-substring-search-down
-
-# OPTION 2: for iTerm2 running on Apple MacBook laptops
-zmodload zsh/terminfo
-bindkey "$terminfo[cuu1]" history-substring-search-up
-bindkey "$terminfo[cud1]" history-substring-search-down
-
-# OPTION 3: for Ubuntu 12.04, Fedora 21, and MacOSX 10.9
-bindkey '^[[A' history-substring-search-up
-bindkey '^[[B' history-substring-search-down
-
-## EMACS mode ###########################################
-
-bindkey -M emacs '^P' history-substring-search-up
-bindkey -M emacs '^N' history-substring-search-down
-
-## VI mode ##############################################
-
-bindkey -M vicmd 'k' history-substring-search-up
-bindkey -M vicmd 'j' history-substring-search-down
 
 
 ###############
@@ -344,38 +303,38 @@ fi
 zle_highlight=(suffix:fg=red)
 
 zle-line-init() {
-# zle -K viins
-# echo -ne "\033]12;lightblue\007"
-# echo -ne "\033[6 q"
-}
-zle-keymap-select() {
-if [ $KEYMAP = vicmd ]; then
-    # echo -ne "\033]12;grey\007"
-    # echo -ne "\033[2 q"
-else
+    # zle -K viins
     # echo -ne "\033]12;lightblue\007"
     # echo -ne "\033[6 q"
-fi
-if [[ -z $BUFFER && $KEYMAP == vicmd ]]
-then
-    BUFFER=" "
-    BUFFER=""
-fi
-zle reset-prompt
+}
+zle-keymap-select() {
+    if [ $KEYMAP = vicmd ]; then
+        # echo -ne "\033]12;grey\007"
+        # echo -ne "\033[2 q"
+    else
+        # echo -ne "\033]12;lightblue\007"
+        # echo -ne "\033[6 q"
+    fi
+    if [[ -z $BUFFER && $KEYMAP == vicmd ]]
+    then
+        BUFFER=" "
+        BUFFER=""
+    fi
+    zle reset-prompt
 }
 
 _pd-fortune() {
-zle -M "$(fortune -a | sed 's/\t/  /g')"
+    zle -M "$(fortune -a | sed 's/\t/  /g')"
 }
 
 _pd-gitStatus() {
 
-gitStatus="$(git status 2>/dev/null | sed 's/\t/  /g')"
-if [ -z $gitStatus ]
-then
-    gitStatus="Not a git repo"
-fi
-zle -M $gitStatus
+    gitStatus="$(git status 2>/dev/null | sed 's/\t/  /g')"
+    if [ -z $gitStatus ]
+    then
+        gitStatus="Not a git repo"
+    fi
+    zle -M $gitStatus
 }
 
 zle -N zle-line-init
@@ -386,6 +345,8 @@ zle -N zle-keymap-select
 # fish like suggestions
 source $HOME/.zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
 export ZSH_AUTOSUGGEST_STRATEGY=match_prev_cmd
+export ZSH_AUTOSUGGEST_USE_ASYNC=t
+export ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE=fg=black,bold
 
 ##################
 # misc functions #
@@ -457,27 +418,28 @@ fi
 termTitle='%n@%m: %~'
 
 set-title () {
-termTitle=$1
+    termTitle=$1
 }
 
 precmd () {
     print -Pn "\e]0;$termTitle\a"
-    if [[ -z $(git ls-files --other --exclude-standard 2> /dev/null) ]] {
+    if [[ -z $(git ls-files --other --exclude-standard 2> /dev/null) ]]
+    then
         branchformat='%F{blue}%b%c%u%f'
-    } else {
-    branchformat="%F{blue}%b%c%u %F{red}U%f"
-}
-branchformat="%{$fg_no_bold[yellow]%}%s %f${branchformat} %F{red}%7.7i%f"
+    else
+        branchformat="%F{blue}%b%c%u %F{red}U%f"
+    fi
+    branchformat="%{$fg_no_bold[yellow]%}%s %f${branchformat} %F{red}%7.7i%f"
 
-zstyle ':vcs_info:*' formats "
+    zstyle ':vcs_info:*' formats "
 [ ${branchformat}%{$fg_bold[white]%} ]"
 
-promptSplit="
+    promptSplit="
 "
-PS1='
+    PS1='
 
 %(!.%F{red}.%{$fg_no_bold[yellow]%})%n%{$fg_no_bold[green]%}@%{$fg_no_bold[cyan]%}%2m %{$fg_bold[white]%}-[ %{$fg_no_bold[blue]%}%3~%{$fg_bold[white]%} ]-${vcs_info_msg_0_}${promptSplit}%{$fg_no_bold[white]%}%W %T %F{magenta}%h%f %(?.%F{green}✓.%F{red}✗)${promptSplit}${runningSSH}$(_vimode_color)%B%#%b%f '
-vcs_info
+    vcs_info
 }
 
 preexec() {
@@ -502,4 +464,53 @@ fi
 # syntax highlighing on prompt
 # from https://github.com/zsh-users/zsh-syntax-highlighting
 source $HOME/.zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+export ZSH_HIGHLIGHT_STYLES[single-hyphen-option]="fg=red"
+export ZSH_HIGHLIGHT_STYLES[double-hyphen-option]="fg=magenta"
+
+###########
+# history #
+###########
+
+HISTFILE=~/.zhistory
+HISTSIZE=1000
+SAVEHIST=1000
+setopt appendHistory
+setopt shareHistory
+setopt histIgnoreAllDups
+bindkey "^R" history-incremental-search-backward
+bindkey -M vicmd "^R" history-incremental-search-backward
+
+
+# fish like history search, must load AFTER syntax highlighting
+source $HOME/.zsh/plugins/zsh-history-substring-search/zsh-history-substring-search.zsh
+
+# make the search fuzzy
+export HISTORY_SUBSTRING_SEARCH_FUZZY=t
+# change colors
+export HISTORY_SUBSTRING_SEARCH_HIGHLIGHT_FOUND="fg=blue,bold,underline"
+export HISTORY_SUBSTRING_SEARCH_HIGHLIGHT_NOT_FOUND="fg=red,bold,underline"
+
+# OPTION 1: for most systems
+zmodload zsh/terminfo
+bindkey "$terminfo[kcuu1]" history-substring-search-up
+bindkey "$terminfo[kcud1]" history-substring-search-down
+
+# OPTION 2: for iTerm2 running on Apple MacBook laptops
+zmodload zsh/terminfo
+bindkey "$terminfo[cuu1]" history-substring-search-up
+bindkey "$terminfo[cud1]" history-substring-search-down
+
+# OPTION 3: for Ubuntu 12.04, Fedora 21, and MacOSX 10.9
+bindkey '^[[A' history-substring-search-up
+bindkey '^[[B' history-substring-search-down
+
+## EMACS mode ###########################################
+
+bindkey -M emacs '^P' history-substring-search-up
+bindkey -M emacs '^N' history-substring-search-down
+
+## VI mode ##############################################
+
+bindkey -M vicmd 'k' history-substring-search-up
+bindkey -M vicmd 'j' history-substring-search-down
 
