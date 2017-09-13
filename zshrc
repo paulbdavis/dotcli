@@ -115,6 +115,7 @@ if [[ -f "$HOME/.rustup/toolchains/nightly-x86_64-unknown-linux-gnu/share/zsh/si
 then
     fpath=("$HOME/.rustup/toolchains/nightly-x86_64-unknown-linux-gnu/share/zsh/site-functions" $fpath)
 fi
+
 compinit
 
 if which npm >/dev/null 2>&1
