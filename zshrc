@@ -123,6 +123,13 @@ then
     source <(npm completion)
 fi
 
+aws_cli_comp=/usr/bin/aws_zsh_completer.sh
+if [[ -f $aws_cli_comp ]]
+then
+    source $aws_cli_comp
+fi
+    
+
 #########
 # marks #
 #########
