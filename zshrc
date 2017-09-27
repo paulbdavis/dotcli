@@ -134,6 +134,12 @@ then
     source <(kubectl completion zsh)
 fi
     
+gcloud_comp=/opt/google-cloud-sdk/completion.zsh.inc
+if [[ -f $gcloud_comp ]]
+then
+    source $gcloud_comp
+fi
+
 
 #########
 # marks #
