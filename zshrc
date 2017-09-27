@@ -128,6 +128,11 @@ if [[ -f $aws_cli_comp ]]
 then
     source $aws_cli_comp
 fi
+
+if which kubectl >/dev/null
+then
+    source <(kubectl completion zsh)
+fi
     
 
 #########
