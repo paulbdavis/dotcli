@@ -30,3 +30,10 @@ then
     export RUST_SRC_PATH="$rust_root/lib/rustlib/src/rust/src"
 fi
     
+#############
+# nvm setup #
+#############
+
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # This loads nvm
+
