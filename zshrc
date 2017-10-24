@@ -453,11 +453,17 @@ precmd () {
     zstyle ':vcs_info:*' formats "
 [ ${branchformat}%{$fg_bold[white]%} ]"
 
+    isProdServer=""
+    if [[ -n "$THIS_IS_A_FUCKING_PROD_SERVER" ]]
+    then
+        isProdServer="%F{red}THIS IS A FUCKING PRODUCTION SERVER, BE CAREFUL%f "
+    fi
+
     promptSplit="
 "
     PS1='
 
-%(!.%F{red}.%{$fg_no_bold[yellow]%})%n%{$fg_no_bold[green]%}@%{$fg_no_bold[cyan]%}%2m %{$fg_bold[white]%}-[ %{$fg_no_bold[blue]%}%3~%{$fg_bold[white]%} ]-${vcs_info_msg_0_}${promptSplit}%{$fg_no_bold[white]%}%W %T %F{magenta}%h%f %(?.%F{green}✓.%F{red}✗)${promptSplit}${runningSSH}$(_vimode_color)%B%#%b%f '
+%(!.%F{red}.%{$fg_no_bold[yellow]%})%n%{$fg_no_bold[green]%}@%{$fg_no_bold[cyan]%}%2m %{$fg_bold[white]%}-[ %{$fg_no_bold[blue]%}%3~%{$fg_bold[white]%} ]-${vcs_info_msg_0_}${promptSplit}%{$fg_no_bold[white]%}%W %T %F{magenta}%h%f %(?.%F{green}✓.%F{red}✗)${promptSplit}${runningSSH}${isProdServer}$(_vimode_color)%B%#%b%f '
     vcs_info
 }
 
