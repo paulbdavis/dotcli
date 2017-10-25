@@ -539,3 +539,16 @@ bindkey -M emacs '^N' history-substring-search-down
 bindkey -M vicmd 'k' history-substring-search-up
 bindkey -M vicmd 'j' history-substring-search-down
 
+# play crawl :)
+
+crawl_key_file="$HOME/.ssh/crawl_cbro_key"
+
+function webcrawl () {
+    
+    if [[ ! -f "$crawl_key_file" ]]
+    then
+        curl -s http://crawl.berotato.org/crawl/keys/cbro_key > "$crawl_key_file"
+        chmod 600 "$crawl_key_file"
+    fi
+    TERM=xterm-256color ssh -i "$crawl_key_file" crawler@crawl.berotato.org
+}
