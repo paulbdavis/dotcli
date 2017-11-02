@@ -552,3 +552,7 @@ function webcrawl () {
     fi
     TERM=xterm-256color ssh -i "$crawl_key_file" crawler@crawl.berotato.org
 }
+
+# check for nvm...
+
+which nvm >/dev/null 2>&1 || source $NVM_DIR/nvm.sh
