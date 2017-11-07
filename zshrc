@@ -120,7 +120,7 @@ compinit
 
 if which npm >/dev/null 2>&1
 then
-    source <(npm completion)
+    source <(npm completion 2>/dev/null)
 fi
 
 aws_cli_comp=/usr/bin/aws_zsh_completer.sh
