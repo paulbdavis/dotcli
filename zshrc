@@ -301,9 +301,9 @@ alias gprojects='dirname */.git'
 # xclip
 copy() {
     text=$(cat)
-    echo $text | xclip -selection primary
-    echo $text | xclip -selection secondary
-    echo $text | xclip -selection clipboard
+    echo -n $text | xclip -selection primary
+    echo -n $text | xclip -selection secondary
+    echo -n $text | xclip -selection clipboard
 }
 
 
@@ -374,13 +374,25 @@ export ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE=fg=black,bold
 function getusername {
     curlData="$(curl -s 'http://jimpix.co.uk/words/random-username-generator.asp#username-results' -X POST --data 'go=yes&ul1=1&ul2=4&al=0')"
     nodes="$(echo $curlData | grep 'href=.check\.asp')"
-    nameslist="$(echo $nodes | sed 's/.*u=\([a-zA-Z0-9]*\).*/\1/')"
+    namelist="$(echo $nodes | sed 's/.*u=\([a-zA-Z0-9.]*\).*/\1/')"
     if [[ "$1" == "-l" ]]
     then
         echo "$namelist"
     else
-        echo "$namelist" | head -1 | copy
+        username="$(echo "$namelist" | head -1 | tr -d '\n')"
+        echo -n $username | copy
+        echo $username
     fi
+}
+
+function termcolors {
+    for i in {0..255} ; do
+        printf "\x1b[48;5;%sm%3d\e[0m " "$i" "$i"
+        if (( i == 15 )) || (( i > 15 )) && (( (i-15) % 6 == 0 )); then
+            printf "\n";
+        fi
+    done
+
 }
 
 #########################
