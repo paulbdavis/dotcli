@@ -249,9 +249,18 @@ PLATFORM=$(uname -s)
 # ls and tree
 if [[ "$PLATFORM" = "Linux" ]]
 then
-    alias ls='ls -lhF --color'
-    alias la='ls -lhfa --color'
-    alias ll='ls -aF'
+    if which exa >/dev/null 2>&q
+    then
+        exa_base='exa -h -m -l -F --time-style long-iso --git --git-ignore --group-directories-first'
+        alias ls="$exa_base"
+        alias ll="$exa_base -u -U -g -H -i -S -@"
+        alias la="$exa_base -a"
+        alias lt="$exa_base -T"
+    else
+        alias ls='ls -lhF --color'
+        alias la='ls -lhfa --color'
+        alias ll='ls -aF'
+    fi
 elif [[ "$PLATFORM" = "Darwin" ]]
 then
     alias ls='ls -lhFG'
