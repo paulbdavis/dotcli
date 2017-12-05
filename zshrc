@@ -133,7 +133,12 @@ if which kubectl >/dev/null
 then
     source <(kubectl completion zsh)
 fi
-    
+
+if which helm >/dev/null
+then
+    source <(helm completion zsh)
+fi
+
 gcloud_comp=/opt/google-cloud-sdk/completion.zsh.inc
 if [[ -f $gcloud_comp ]]
 then
