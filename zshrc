@@ -251,11 +251,12 @@ if [[ "$PLATFORM" = "Linux" ]]
 then
     if which exa >/dev/null 2>&q
     then
-        exa_base='exa -h -m -l -F --time-style long-iso --git --git-ignore --group-directories-first'
+        exa_base='exa -h -m -l -F --time-style long-iso --git --group-directories-first'
         alias ls="$exa_base"
         alias ll="$exa_base -u -U -g -H -i -S -@"
         alias la="$exa_base -a"
         alias lt="$exa_base -T"
+        alias lg="$exa_base --git-ignore"
     else
         alias ls='ls -lhF --color'
         alias la='ls -lhfa --color'
@@ -282,6 +283,8 @@ if which bitcoin-cli >/dev/null 2>&1
 then
     alias bitcoin=bitcoin-cli
     compdef bitcoin=bitcoin-cli
+    alias btc=bitcoin-cli
+    compdef btc=bitcoin-cli
 fi
 
 # password gen
@@ -319,9 +322,6 @@ copy() {
     echo -n $text | xclip -selection secondary
     echo -n $text | xclip -selection clipboard
 }
-
-
-
 
 if [[ $FBTERM -eq 1 ]]
 then
