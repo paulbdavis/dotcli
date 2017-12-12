@@ -580,5 +580,7 @@ function webcrawl () {
 }
 
 # check for nvm...
-
-which nvm >/dev/null 2>&1 || source $NVM_DIR/nvm.sh
+if [[ -f "$NVM_DIR/nvm.sh" ]]
+then
+    which nvm >/dev/null 2>&1 || source $NVM_DIR/nvm.sh
+fi
