@@ -249,7 +249,7 @@ PLATFORM=$(uname -s)
 # ls and tree
 if [[ "$PLATFORM" = "Linux" ]]
 then
-    if which exa >/dev/null 2>&q
+    if which exa >/dev/null 2>&1
     then
         exa_base='exa -h -m -l -F --time-style long-iso --git --group-directories-first'
         alias ls="$exa_base"
