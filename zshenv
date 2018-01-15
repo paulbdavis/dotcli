@@ -24,3 +24,5 @@ if [[ "$SHLVL" -eq 1 && ! -o LOGIN && -s "${ZDOTDIR:-$HOME}/.zprofile" ]]
 then
   source "${ZDOTDIR:-$HOME}/.zprofile"
 fi
+
+# export SSH_AUTH_SOCK="$(journalctl --user -u gpg-agent -b | grep -Eo 'ssh socket \((/[^/]+)+\.ssh' | tail -1 | sed 's/ssh socket (//')"
