@@ -379,7 +379,7 @@ zle -N zle-keymap-select
 source $HOME/.zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
 export ZSH_AUTOSUGGEST_STRATEGY=match_prev_cmd
 export ZSH_AUTOSUGGEST_USE_ASYNC=t
-export ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE=fg=black,bold
+export ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE=fg=8
 
 ##################
 # misc functions #
@@ -584,3 +584,4 @@ if [[ -f "$NVM_DIR/nvm.sh" ]]
 then
     which nvm >/dev/null 2>&1 || source $NVM_DIR/nvm.sh
 fi
+
