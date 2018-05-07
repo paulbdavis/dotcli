@@ -583,6 +583,11 @@ function webcrawl () {
 if [[ -f "$NVM_DIR/nvm.sh" ]]
 then
     which nvm >/dev/null 2>&1 || source $NVM_DIR/nvm.sh
+elif [[ -f "/usr/share/nvm/nvm.sh" ]]
+then
+    NVM_DIR="/usr/share/nvm"
+    export NVM_DIR
+    which nvm >/dev/null 2>&1 || source $NVM_DIR/nvm.sh
 fi
 
 default_ssh_auth_sock="/var${XDG_RUNTIME_DIR}/gnupg/S.gpg-agent.ssh"
