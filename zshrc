@@ -11,16 +11,6 @@ then
     return
 fi
 
-[ ! "$LANG" = en_US.UTF8 ] && export LANG=en_US.UTF8
-
-if [[ -d $HOME/.env.d ]]
-then
-    for envfile in $HOME/.env.d/*
-    do
-        . "$envfile"
-    done
-fi
-
 ############
 # terminal #
 ############
@@ -579,18 +569,9 @@ function webcrawl () {
     TERM=xterm-256color ssh -i "$crawl_key_file" crawler@crawl.berotato.org
 }
 
-# check for nvm...
-if [[ -f "$NVM_DIR/nvm.sh" ]]
+# load direnv
+if which direnv >/dev/null 2>&1
 then
-    which nvm >/dev/null 2>&1 || source $NVM_DIR/nvm.sh
-elif [[ -f "/usr/share/nvm/init-nvm.sh" ]]
-then
-    which nvm >/dev/null 2>&1 || source /usr/share/nvm/init-nvm.sh
+    eval "$(direnv hook zsh)"
 fi
 
-default_ssh_auth_sock="/var${XDG_RUNTIME_DIR}/gnupg/S.gpg-agent.ssh"
-
-if [[ -z "$SSH_AUTH_SOCK" && -e "$default_ssh_auth_sock" ]]
-then
-    export SSH_AUTH_SOCK="$default_ssh_auth_sock"
-fi
