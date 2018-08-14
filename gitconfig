@@ -1,6 +1,3 @@
-[user]
-    name = paulbdavis
-    email = paul@dangersalad.com
 [core]
     editor = vi
     autocrlf = input
@@ -19,3 +16,5 @@
     insteadOf = https://pidev.sol.lan/
 [magit]
 	hideCampaign = true
+[url "ssh://git@bitbucket.org/"]
+	insteadOf = https://bitbucket.org/

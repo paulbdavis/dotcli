@@ -129,6 +129,11 @@ then
     source <(helm completion zsh)
 fi
 
+if which kops >/dev/null
+then
+    source <(kops completion zsh)
+fi
+
 gcloud_comp=/opt/google-cloud-sdk/completion.zsh.inc
 if [[ -f $gcloud_comp ]]
 then
@@ -572,6 +577,15 @@ function webcrawl () {
 # load direnv
 if which direnv >/dev/null 2>&1
 then
-    eval "$(direnv hook zsh)"
+    _direnv_hook() {
+        eval "$(direnv export zsh 2>/dev/null)";
+    }
+    typeset -ag precmd_functions;
+    if [[ -z ${precmd_functions[(r)_direnv_hook]} ]]; then
+        precmd_functions+=_direnv_hook;
+    fi
+
 fi
 
+# update gpg agent
+echo UPDATESTARTUPTTY | gpg-connect-agent
