@@ -588,4 +588,7 @@ then
 fi
 
 # update gpg agent
-echo UPDATESTARTUPTTY | gpg-connect-agent
+if which gpg-connect-agent >/dev/null 2>&1
+then
+    echo UPDATESTARTUPTTY | gpg-connect-agent
+fi
