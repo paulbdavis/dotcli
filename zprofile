@@ -14,6 +14,7 @@ fi
 # golang
 export GOPATH=${HOME}/dev/go
 export GOBIN=$GOPATH/bin
+export GO111MODULE=on
 export GOARCH=amd64
 export GOOS=linux
 
