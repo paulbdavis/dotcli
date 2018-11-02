@@ -477,7 +477,7 @@ precmd () {
     isProdServer=""
     if [[ -n "$THIS_IS_A_FUCKING_PROD_SERVER" ]]
     then
-        isProdServer="%F{red}THIS IS A FUCKING PRODUCTION SERVER, BE CAREFUL%f "
+        isProdServer=" %F{red}THIS IS A FUCKING PRODUCTION SERVER, BE CAREFUL%f"
     fi
 
     promptSplit="
