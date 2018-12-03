@@ -372,9 +372,9 @@ zle -N zle-keymap-select
 
 # fish like suggestions
 source $HOME/.zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
-export ZSH_AUTOSUGGEST_STRATEGY=match_prev_cmd
-export ZSH_AUTOSUGGEST_USE_ASYNC=t
-export ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE=fg=8
+export ZSH_AUTOSUGGEST_STRATEGY="match_prev_cmd"
+export ZSH_AUTOSUGGEST_USE_ASYNC="t"
+export ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=8"
 
 ##################
 # misc functions #
