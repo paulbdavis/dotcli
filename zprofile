@@ -92,3 +92,10 @@ then
     eval "$(direnv export zsh 2>/dev/null)"
 fi
 
+# use breeze theme if present for qt apps
+if [[ -f "/usr/lib/qt/plugins/styles/breeze.so" ]]
+then
+    export QT_STYLE_OVERRIDE=Breeze
+fi
+
+systemctl --user import-environment PATH
