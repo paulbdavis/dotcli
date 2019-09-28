@@ -590,5 +590,5 @@ fi
 # update gpg agent
 if which gpg-connect-agent >/dev/null 2>&1
 then
-    echo UPDATESTARTUPTTY | gpg-connect-agent
+    gpg-connect-agent updatestartuptty /bye >/dev/null
 fi
