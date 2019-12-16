@@ -31,6 +31,7 @@ paths=(
     "$GOBIN"
     "$HOME/.cabal/bin"
     "$HOME/.cargo/bin"
+    "$HOME/.krew/bin"
 )
 for dir in $paths
 do

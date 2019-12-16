@@ -1,3 +1,7 @@
+# get zsh dir
+
+zsh_dir="${ZDOTDIR:-$HOME}"
+
 ###############
 # environment #
 ###############
@@ -64,15 +68,15 @@ plugins=(zsh-users/zsh-completions \
 # only do this if git is installed
 if [[ -n "$(which git)" ]]
 then
-    if [[ ! -d "$HOME/.zsh" ]]
+    if [[ ! -d "${zsh_dir}/.zsh" ]]
     then
-        mkdir "$HOME/.zsh"
+        mkdir "${zsh_dir}/.zsh"
     fi
 
     for plugin in $plugins
     do
         gitURL="https://github.com/${plugin}.git"
-        gitDest="$HOME/.zsh/plugins/${plugin#*/}"
+        gitDest="${zsh_dir}/.zsh/plugins/${plugin#*/}"
         if [[ ! -d "$gitDest" ]]
         then
             echo "cloning repo"
@@ -96,10 +100,10 @@ zstyle :compinstall filename '/home/paul/.zshrc'
 zmodload zsh/complist
 autoload -Uz compinit
 setopt extendedglob
-fpath=($HOME/.zsh/completions $fpath)
+fpath=($zsh_dir/.zsh/completions $fpath)
 # more completions
 # from https://github.com/zsh-users/zsh-completions
-fpath=($HOME/.zsh/plugins/zsh-completions/src $fpath)
+fpath=($zsh_dir/.zsh/plugins/zsh-completions/src $fpath)
 
 if [[ -f "$HOME/.rustup/toolchains/nightly-x86_64-unknown-linux-gnu/share/zsh/site-functions/_cargo" ]]
 then
@@ -145,7 +149,7 @@ fi
 # marks #
 #########
 
-export MARKPATH=$HOME/.marks
+export MARKPATH=${XDG_DATA_DIR:-$HOME/.local/share}/shell-marks
 
 function jump {
     cd -P "$MARKPATH/$1" 2>/dev/null || echo "No such mark"
@@ -201,23 +205,15 @@ bindkey -e
 
 
 ###############
-# tetris, duh #
-###############
-
-autoload -U tetris
-zle -N tetris
-bindkey "^T" tetris
-
-###############
 # from bashrc #
 ###############
 
 # put ls colors in an external file, because it is annoying
-if [[ -f $HOME/.zsh/ls-colors.zsh ]]
+if [[ -f $zsh_dir/.zsh/ls-colors.zsh ]]
 then
-    source $HOME/.zsh/ls-colors.zsh
+    source $zsh_dir/.zsh/ls-colors.zsh
 fi
-export EDITOR="vim"
+export EDITOR="emacsclient"
 
 # alias less='/usr/share/vim/vim73/macros/less.sh'
 # colors for less
@@ -238,7 +234,7 @@ export LESSOPEN="| /usr/bin/source-highlight-esc.sh %s"
 # aliases #
 ###########
 
-alias zs='source $HOME/.zshrc'
+alias zs='source $zsh_dir/.zshrc'
 
 PLATFORM=$(uname -s)
 # ls and tree
@@ -371,7 +367,7 @@ zle -N zle-keymap-select
 
 
 # fish like suggestions
-source $HOME/.zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
+source $zsh_dir/.zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
 export ZSH_AUTOSUGGEST_STRATEGY=("match_prev_cmd" "history")
 export ZSH_AUTOSUGGEST_USE_ASYNC="t"
 export ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=8"
@@ -497,7 +493,7 @@ preexec() {
 # local config #
 ################
 
-LOCALFILE="$HOME/.zshrc.local"
+LOCALFILE="$zsh_dir/.zshrc.local"
 if [[ -f "$LOCALFILE" ]]
 then
     source "$LOCALFILE"
@@ -509,7 +505,7 @@ fi
 
 # syntax highlighing on prompt
 # from https://github.com/zsh-users/zsh-syntax-highlighting
-source $HOME/.zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+source $zsh_dir/.zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 export ZSH_HIGHLIGHT_STYLES[single-hyphen-option]="fg=red"
 export ZSH_HIGHLIGHT_STYLES[double-hyphen-option]="fg=magenta"
 
@@ -528,7 +524,7 @@ bindkey -M vicmd "^R" history-incremental-search-backward
 
 
 # fish like history search, must load AFTER syntax highlighting
-source $HOME/.zsh/plugins/zsh-history-substring-search/zsh-history-substring-search.zsh
+source $zsh_dir/.zsh/plugins/zsh-history-substring-search/zsh-history-substring-search.zsh
 
 # make the search fuzzy
 export HISTORY_SUBSTRING_SEARCH_FUZZY=t
