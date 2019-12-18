@@ -525,7 +525,6 @@ setopt appendHistory
 setopt shareHistory
 setopt histIgnoreAllDups
 bindkey "^R" history-incremental-search-backward
-bindkey -M vicmd "^R" history-incremental-search-backward
 
 
 # fish like history search, must load AFTER syntax highlighting
@@ -537,16 +536,6 @@ export HISTORY_SUBSTRING_SEARCH_FUZZY=t
 export HISTORY_SUBSTRING_SEARCH_HIGHLIGHT_FOUND="fg=blue,bold,underline"
 export HISTORY_SUBSTRING_SEARCH_HIGHLIGHT_NOT_FOUND="fg=red,bold,underline"
 
-# OPTION 1: for most systems
-zmodload zsh/terminfo
-bindkey "$terminfo[kcuu1]" history-substring-search-up
-bindkey "$terminfo[kcud1]" history-substring-search-down
-
-# OPTION 2: for iTerm2 running on Apple MacBook laptops
-zmodload zsh/terminfo
-bindkey "$terminfo[cuu1]" history-substring-search-up
-bindkey "$terminfo[cud1]" history-substring-search-down
-
 # OPTION 3: for Ubuntu 12.04, Fedora 21, and MacOSX 10.9
 bindkey '^[[A' history-substring-search-up
 bindkey '^[[B' history-substring-search-down
@@ -556,10 +545,6 @@ bindkey '^[[B' history-substring-search-down
 bindkey -M emacs '^P' history-substring-search-up
 bindkey -M emacs '^N' history-substring-search-down
 
-## VI mode ##############################################
-
-bindkey -M vicmd 'k' history-substring-search-up
-bindkey -M vicmd 'j' history-substring-search-down
 
 # play crawl :)
 
