@@ -457,6 +457,11 @@ set-title () {
     termTitle=$1
 }
 
+# directory sync for emacs vterm
+vterm_prompt_end() {
+    printf "\e]51;A$(whoami)@$(hostname):$(pwd)\e\\";
+}
+
 precmd () {
     print -Pn "\e]0;$termTitle\a"
     if [[ -z $(git ls-files --other --exclude-standard 2> /dev/null) ]]
@@ -480,7 +485,7 @@ precmd () {
 "
     PS1='
 
-%(!.%F{red}.%{$fg_no_bold[yellow]%})%n%{$fg_no_bold[green]%}@%{$fg_no_bold[cyan]%}%2m %{$fg_bold[white]%}-[ %{$fg_no_bold[blue]%}%3~%{$fg_bold[white]%} ]-${vcs_info_msg_0_}${promptSplit}%{$fg_no_bold[white]%}%W %T %F{magenta}%h%f %(?.%F{green}✓.%F{red}✗)${isProdServer}${promptSplit}${runningSSH}$(_vimode_color)%B%#%b%f '
+%(!.%F{red}.%{$fg_no_bold[yellow]%})%n%{$fg_no_bold[green]%}@%{$fg_no_bold[cyan]%}%2m %{$fg_bold[white]%}-[ %{$fg_no_bold[blue]%}%3~%{$fg_bold[white]%} ]-${vcs_info_msg_0_}${promptSplit}%{$fg_no_bold[white]%}%W %T %F{magenta}%h%f %(?.%F{green}✓.%F{red}✗)${isProdServer}${promptSplit}${runningSSH}$(_vimode_color)%B%#%b%f%{$(vterm_prompt_end)%} '
     vcs_info
 }
 
@@ -588,3 +593,4 @@ if which gpg-connect-agent >/dev/null 2>&1
 then
     gpg-connect-agent updatestartuptty /bye >/dev/null
 fi
+
