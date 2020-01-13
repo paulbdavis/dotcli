@@ -25,6 +25,7 @@ export ANDROID_SWT=/usr/share/java
 # set PATH so it includes user's private bin if it exists
 paths=(
     "$HOME/bin"
+    "$HOME/.local/bin"
     "$HOME/.yarn/bin"
     "$HOME/.config/i3/bin"
     "$ANDROID_HOME/tools"
