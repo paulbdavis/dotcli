@@ -249,9 +249,9 @@ then
         alias lt="$exa_base -T"
         alias lg="$exa_base --git-ignore"
     else
-        alias ls='ls -lhF --color'
-        alias la='ls -lhfa --color'
-        alias ll='ls -aF'
+        alias ls='ls -lhF --color --group-directories-first'
+        alias la='ls -lhfaF --color --group-directories-first'
+        alias ll='ls -lhfaF --color --group-directories-first'
     fi
 elif [[ "$PLATFORM" = "Darwin" ]]
 then
@@ -259,6 +259,8 @@ then
     alias la='ls -lhfaG'
     alias ll='ls -aF'
 fi
+
+alias greplb='grep -e --line-buffered --'
 
 alias tree='tree -ChF'
 
@@ -470,22 +472,22 @@ precmd () {
     else
         branchformat="%F{blue}%b%c%u %F{red}U%f"
     fi
-    branchformat="%{$fg_no_bold[yellow]%}%s %f${branchformat} %F{red}%7.7i%f"
+    branchformat="%f${branchformat} %F{red}%7.7i%f"
 
-    zstyle ':vcs_info:*' formats "
-[ ${branchformat}%{$fg_bold[white]%} ]"
+    zstyle ':vcs_info:*' formats " ${branchformat}%{$fg_bold[white]%}"
 
     isProdServer=""
     if [[ -n "$THIS_IS_A_FUCKING_PROD_SERVER" ]]
     then
-        isProdServer=" %F{red}THIS IS A FUCKING PRODUCTION SERVER, BE CAREFUL%f"
+        isProdServer="
+%F{red}THIS IS A FUCKING PRODUCTION SERVER, BE CAREFUL%f"
     fi
 
     promptSplit="
 "
     PS1='
 
-%(!.%F{red}.%{$fg_no_bold[yellow]%})%n%{$fg_no_bold[green]%}@%{$fg_no_bold[cyan]%}%2m %{$fg_bold[white]%}-[ %{$fg_no_bold[blue]%}%3~%{$fg_bold[white]%} ]-${vcs_info_msg_0_}${promptSplit}%{$fg_no_bold[white]%}%W %T %F{magenta}%h%f %(?.%F{green}✓.%F{red}✗)${isProdServer}${promptSplit}${runningSSH}$(_vimode_color)%B%#%b%f%{$(vterm_prompt_end)%} '
+%(!.%F{red}.%{$fg_no_bold[yellow]%})%n%{$fg_no_bold[green]%}@%{$fg_no_bold[cyan]%}%2m %{$fg_bold[yellow]%} %{$fg_no_bold[blue]%}%3~${promptSplit}%{$fg_no_bold[white]%}%W %T %F{magenta}%h%f %(?.%F{green}✓.%F{red}✗) %{$fg_bold[magentaii]%}${vcs_info_msg_0_}${isProdServer}${promptSplit}${runningSSH}$(_vimode_color)%B%#%b%f%{$(vterm_prompt_end)%} '
     vcs_info
 }
 
