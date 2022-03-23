@@ -101,3 +101,6 @@ then
 fi
 
 systemctl --user import-environment PATH
+systemctl --user import-environment GOPATH
+systemctl --user import-environment GOBIN
+systemctl --user import-environment GO111MODULE

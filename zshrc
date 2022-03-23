@@ -379,7 +379,7 @@ export ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=8"
 ##################
 
 function getusername {
-    curlData="$(curl -s 'http://jimpix.co.uk/words/random-username-generator.asp#username-results' -X POST --data 'go=yes&ul1=1&ul2=4&al=0')"
+    curlData="$(curl -s 'https://jimpix.co.uk/words/random-username-generator.asp' -X POST --data 'go=yes&ul1=1&ul2=4&al=0')"
     nodes="$(echo $curlData | grep 'href=.check\.asp')"
     namelist="$(echo $nodes | sed 's/.*u=\([a-zA-Z0-9.]*\).*/\1/')"
     if [[ "$1" == "-l" ]]

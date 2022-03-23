@@ -12,9 +12,7 @@
 [push]
     default = current
 
-[url "git@pidev.sol.lan:"]
-    insteadOf = https://pidev.sol.lan/
 [magit]
 	hideCampaign = true
-[url "ssh://git@bitbucket.org/"]
-	insteadOf = https://bitbucket.org/
+[init]
+	defaultBranch = main
