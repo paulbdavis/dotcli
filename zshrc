@@ -487,7 +487,7 @@ precmd () {
 "
     PS1='
 
-%(!.%F{red}.%{$fg_no_bold[yellow]%})%n%{$fg_no_bold[green]%}@%{$fg_no_bold[cyan]%}%2m %{$fg_bold[yellow]%} %{$fg_no_bold[blue]%}%3~${promptSplit}%{$fg_no_bold[white]%}%W %T %F{magenta}%h%f %(?.%F{green}✓.%F{red}✗) %{$fg_bold[magentaii]%}${vcs_info_msg_0_}${isProdServer}${promptSplit}${runningSSH}$(_vimode_color)%B%#%b%f%{$(vterm_prompt_end)%} '
+%(!.%F{red}.%{$fg_no_bold[yellow]%})%n%{$fg_no_bold[green]%}@%{$fg_no_bold[cyan]%}%2m %{$fg_bold[yellow]%} %{$fg_no_bold[blue]%}%3~${promptSplit}%{$fg_no_bold[white]%}%D{%Y-%m-%d %H:%M %Z} %F{magenta}%h%f %(?.%F{green}✓.%F{red}✗) %{$fg_bold[magentaii]%}${vcs_info_msg_0_}${isProdServer}${promptSplit}${runningSSH}$(_vimode_color)%B%#%b%f%{$(vterm_prompt_end)%} '
     vcs_info
 }
 
