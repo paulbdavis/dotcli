@@ -461,7 +461,7 @@ set-title () {
 
 # directory sync for emacs vterm
 vterm_prompt_end() {
-    printf "\e]51;A$(whoami)@$(hostname):$(pwd)\e\\";
+    printf "\e]51;A$(whoami)@$(hostnamectl hostname):$(pwd)\e\\";
 }
 
 precmd () {
