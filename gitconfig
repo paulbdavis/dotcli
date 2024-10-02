@@ -1,5 +1,4 @@
 [core]
-    editor = emacsclient
     autocrlf = input
 [color]
     ui = auto
