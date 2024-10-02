@@ -1,0 +1,29 @@
+theme = "passthrough"
+# theme = "zenburn"
+
+[editor]
+rulers = [80]
+bufferline = "multiple"
+jump-label-alphabet = "ashtneoiqdrwfupzxmcl"
+color-modes = true
+
+[keys.normal]
+C-a = "goto_line_start"
+C-e = "goto_line_end"
+
+[editor.statusline]
+left = ["mode", "spinner", "file-type", "file-name", "read-only-indicator", "file-modification-indicator"]
+center = []
+right = ["version-control", "workspace-diagnostics", "diagnostics", "selections", "register", "position", "file-encoding"]
+separator = "│"
+mode.normal = "NORMAL"
+mode.insert = "INSERT"
+mode.select = "SELECT"
+
+[editor.file-picker]
+hidden = false
+
+[editor.indent-guides]
+render = true
+character = "▏" # Some characters that work well: "╎" "▏", "┆", "┊", "⸽"
+skip-levels = 1

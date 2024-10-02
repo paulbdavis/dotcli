@@ -1,0 +1,11 @@
+window:
+  padding:
+    x: 7
+    y: 7
+
+# Font configuration 
+font:
+  normal:
+    family: "InputMono Nerd Font"
+  size: 10
+

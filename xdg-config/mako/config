@@ -1,0 +1,22 @@
+sort=-time
+layer=top
+background-color=#1c1c1c
+text-color=#dcdccc
+width=540
+height=800
+border-size=1
+border-color=#7f9f7f
+border-radius=0
+icons=0
+max-icon-size=64
+default-timeout=10000
+ignore-timeout=1
+font=monospace 10
+output=HDMI-A-1
+
+[urgency=high]
+background-color=#cc9393
+border-color=#1c1c1c
+text-color=#1c1c1c
+default-timeout=0
+

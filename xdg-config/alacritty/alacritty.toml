@@ -1,0 +1,46 @@
+[font]
+size = 8
+
+[font.normal]
+family = "InputMono Nerd Font"
+
+[window.padding]
+x = 5
+y = 5
+
+[colors.primary]
+background = '#1c1c1c'
+foreground = '#DCDCCC'
+
+
+## Normal/regular colors (color palette 0-7)
+[colors.normal]
+black='#0c0c0c'  # black
+red='#cc9393'  # red
+green='#7f9f7f'  # green
+yellow='#d0cf9f'  # yellow
+blue='#8cd0d3'  # blue
+magenta='#c0bed1'  # magenta
+cyan ='#dfaf8f'  # cyan (orange)
+white='#dcdccc'  # white
+
+## Bright colors (color palette 8-15)
+[colors.bright]
+black='#3f3f3f'   # black
+red='#edb4b4'   # red
+green='#9fbf9f'   # green
+yellow='#f0efbf'   # yellow
+blue='#acf0f3'   # blue
+magenta='#e0def1'   # magenta
+cyan ='#ffcfaf'   # cyan (orange)
+white='#ffffff'   # white
+
+[colors.dim]
+black='#000000'  # black
+red='#ac7373'  # red
+green='#5f7f5f'  # green
+yellow='#b0af7f'  # yellow
+blue='#6cb0b3'  # blue
+magenta='#a09eb1'  # magenta
+cyan ='#bf8f6f'  # cyan (orange)
+white='#bcbcac'  # white
