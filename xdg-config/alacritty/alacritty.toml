@@ -8,6 +8,11 @@ family = "InputMono Nerd Font"
 x = 5
 y = 5
 
+[keyboard]
+bindings = [
+{ key = "y", mods = "Control", action = "Paste"}
+]
+
 [colors.primary]
 background = '#1c1c1c'
 foreground = '#DCDCCC'
