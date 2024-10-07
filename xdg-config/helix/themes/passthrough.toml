@@ -7,6 +7,7 @@
 "ui.popup" = { bg = "gray" }
 "ui.window" = { bg = "gray" }
 "ui.selection" = { bg = "gray", modifiers = ["reversed"] }
+"ui.selection.primary" = { bg = "gray", modifiers = ["reversed", "dim", "underlined"] }
 "comment" = { fg = "green", modifiers = ["italic"] }
 "ui.statusline" = { fg = "green", bg = "gray", modifiers = ["bold"] }
 "ui.statusline.inactive" = { fg = "white", bg = "gray" }
@@ -14,7 +15,7 @@
 "ui.statusline.select" = { fg = "gray", bg = "magenta", modifiers = ["bold"] }
 "ui.help" = { fg = "white", bg = "black" }
 "ui.cursor" = { fg = "light-gray", modifiers = ["reversed"] }
-"ui.cursor.primary" = { fg = "light-gray", modifiers = ["reversed"] }
+"ui.cursor.primary" = { fg = "light-gray", modifiers = ["reversed", "dim"] }
 "ui.virtual.whitespace" = "light-gray"
 "ui.virtual.jump-label" = { fg = "blue", bg = "gray", modifiers = ["bold"] }
 "ui.virtual.ruler" = { bg = "black" }
