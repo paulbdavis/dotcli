@@ -7,7 +7,19 @@ jump-label-alphabet = "aidpxrumwfcltn"
 color-modes = true
 line-number = "relative"
 
+[editor.cursor-shape]
+insert = "bar"
+
 [keys.normal]
+C-a = "goto_line_start"
+C-e = "goto_line_end"
+C-n = "move_visual_line_down"
+C-p = "move_visual_line_up"
+C-f = "move_char_right"
+C-b = "move_char_left"
+C-g = "collapse_selection"
+
+[keys.select]
 C-a = "goto_line_start"
 C-e = "goto_line_end"
 C-n = "move_visual_line_down"
