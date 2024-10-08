@@ -6,6 +6,7 @@ bufferline = "multiple"
 jump-label-alphabet = "aidpxrumwfcltn"
 color-modes = true
 line-number = "relative"
+text-width = 80
 
 [editor.cursor-shape]
 insert = "bar"
@@ -43,3 +44,7 @@ hidden = false
 render = true
 character = "▏" # Some characters that work well: "╎" "▏", "┆", "┊", "⸽"
 skip-levels = 1
+
+[editor.soft-wrap]
+enable = true
+
