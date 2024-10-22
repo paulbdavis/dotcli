@@ -28,6 +28,7 @@ paths=(
     "$HOME/.local/bin"
     "$HOME/.yarn/bin"
     "$HOME/.config/i3/bin"
+    "$HOME/.config/dwl/bin"
     "$ANDROID_HOME/tools"
     "$GOBIN"
     "$HOME/.cabal/bin"
