@@ -1,0 +1,26 @@
+#window {
+  background-color: #1c1c1c;
+  /* color: #dcdccc */
+}
+
+#input {
+  background-color: #1c1c1c;
+  border-color: #3f3f3f;
+  color: #dcdccc;
+  box-shadow: none;
+}
+
+#entry {
+  color: #dcdccc;
+}
+
+#entry:selected {
+  background-color: #7F9F7F;
+  color: #1c1c1c;
+}
+
+#entry:selected #text {
+  color: #1c1c1c;
+  font-weight: bold;
+}
+
