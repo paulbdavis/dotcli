@@ -12,7 +12,7 @@ elif [[ -f /usr/bin/virtualenvwrapper.sh ]]; then
 fi
 
 # golang
-export GOPATH=${HOME}/dev/go
+export GOPATH=${XDG_DATA_HOME:-$HOME/.local/share}/go
 export GOBIN=$GOPATH/bin
 export GO111MODULE=on
 export GOARCH=amd64
@@ -105,3 +105,4 @@ systemctl --user import-environment PATH
 systemctl --user import-environment GOPATH
 systemctl --user import-environment GOBIN
 systemctl --user import-environment GO111MODULE
+systemctl --user import-environment SSH_AUTH_SOCK

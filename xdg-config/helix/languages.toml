@@ -7,3 +7,15 @@ language-servers = [ "gopls" ]
 [language-server.gopls.config]
 templateExtensions = [ "tmpl", "gotmpl" ]
 
+[language-server.yaml-language-server.config.yaml]
+customTags = [
+  "!Ref scalar",
+  "!Equals sequence",
+  "!If sequence",
+  "!Sub scalar",
+  "!Sub sequence",
+  "!GetAtt scalar",
+  "!Base64 scalar",
+  "!Select sequence",
+  "!Cidr sequence"
+]

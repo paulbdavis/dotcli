@@ -35,6 +35,8 @@
 "keyword" = { fg = "yellow", modifiers = ["dim"] }
 "label" = "magenta"
 "namespace" = { fg = "magenta", modifiers = ["dim"] }
+"@tag.delimiter" = { fg = "yellow", modifiers = ["dim"] }
+"@tag.attribute" = { fg = "blue", modifiers = ["dim"] }
 
 "markup.heading" = "light-blue"
 "markup.list" = "light-red"

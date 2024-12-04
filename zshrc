@@ -98,6 +98,7 @@ zstyle ':completion:*' list-colors ${(s.:.)LS_COLORS}
 zstyle :compinstall filename '/home/paul/.zshrc'
 
 zmodload zsh/complist
+autoload bashcompinit
 autoload -Uz compinit
 setopt extendedglob
 fpath=($zsh_dir/.zsh/completions $fpath)
@@ -110,6 +111,7 @@ then
     fpath=("$HOME/.rustup/toolchains/nightly-x86_64-unknown-linux-gnu/share/zsh/site-functions" $fpath)
 fi
 
+bashcompinit
 compinit
 
 if which npm >/dev/null 2>&1
@@ -144,6 +146,10 @@ then
     source $gcloud_comp
 fi
 
+if which aws_completer > /dev/null
+then
+    complete -C "$(which aws_completer)" aws
+fi
 
 #########
 # marks #
