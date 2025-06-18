@@ -85,7 +85,6 @@ then
     done
 fi
 
-
 ##############
 # completion #
 ##############
@@ -219,7 +218,7 @@ if [[ -f $zsh_dir/.zsh/ls-colors.zsh ]]
 then
     source $zsh_dir/.zsh/ls-colors.zsh
 fi
-export EDITOR="emacsclient"
+export EDITOR="vi"
 
 # alias less='/usr/share/vim/vim73/macros/less.sh'
 # colors for less
@@ -480,7 +479,7 @@ precmd () {
     fi
     branchformat="%f${branchformat} %F{red}%7.7i%f"
 
-    zstyle ':vcs_info:*' formats " ${branchformat}%{$fg_bold[white]%}"
+    zstyle ':vcs_info:*' formats " ${branchformat}%{$fg_bold[white]%}"
 
     isProdServer=""
     if [[ -n "$THIS_IS_A_FUCKING_PROD_SERVER" ]]
