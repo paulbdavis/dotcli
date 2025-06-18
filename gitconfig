@@ -3,15 +3,21 @@
 [color]
     ui = auto
 [alias]
-    ls = log --decorate --oneline --graph
+    ls = log --decorate --graph
     ll = log --decorate --graph --dirstat
-    la = log --decorate --oneline --graph --all
+    la = log --decorate --graph --all
     lla = log --decorate --graph --all --dirstat
     co = checkout
 [push]
-    default = current
-
+	default=upstream
+[log]
+	date=relative
+[format]
+	pretty = format: %C(yellow)%h%Creset %C(auto)%(decorate)%Creset %<|(-45,mtrunc)%s %>|(-30)%Cblue%ad%Creset %<|(-20)%Cgreen%ae%Creset 
 [magit]
 	hideCampaign = true
 [init]
 	defaultBranch = main
+[user]
+	email = pdavis@cloud303.io
+	name = cloud303-pdavis
