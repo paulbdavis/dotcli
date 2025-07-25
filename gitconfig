@@ -13,11 +13,8 @@
 [log]
 	date=relative
 [format]
-	pretty = format: %C(yellow)%h%Creset %C(auto)%(decorate)%Creset %<|(-45,mtrunc)%s %>|(-30)%Cblue%ad%Creset %<|(-20)%Cgreen%ae%Creset 
+	pretty = format: %C(yellow)%h%Creset %C(auto)%(decorate)%Creset %<|(-45,mtrunc)%s %>|(-30)%Cblue%ad%Creset %Cgreen%ae%Creset 
 [magit]
 	hideCampaign = true
 [init]
 	defaultBranch = main
-[user]
-	email = pdavis@cloud303.io
-	name = cloud303-pdavis
